@@ -23,7 +23,6 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-      <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6"></div>
       <div className="rounded-full overflow-hidden">
         <Image src="/my-img.JPG" alt="My Image" width={500} height={500} />
       </div>{" "}
