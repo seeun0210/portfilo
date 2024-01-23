@@ -11,17 +11,22 @@ export default function ProjectItem(data) {
   console.log(`gitHubURL::${gitHubURL}`);
   const imageURL = projectItem.cover.file?.url;
   console.log("imageURL::", imageURL);
-
+  const projectURL = projectItem.properties["배포링크"]?.url;
+  console.log("projectURL::", projectURL);
+  const projectDetailInfo = projectItem.public_url;
+  console.log(projectDetailInfo);
   return (
     <div className="project-card">
-      <Image
-        src={imageURL}
-        width={100}
-        height={100}
-        layout="responsive"
-        objectFit="contain"
-      />
-      <h1 className="font-bold text-xl">{Title}</h1>
+      <div className="mb-3">
+        <Image
+          src={imageURL}
+          width={100}
+          height={100}
+          layout="responsive"
+          objectFit="contain"
+        />
+      </div>
+      <h1 className="font-bold text-xl mh-3">{Title}</h1>
       <div className="flex flex-wrap mt-2">
         {skillSet.map((aSkill) => (
           <div
@@ -32,9 +37,38 @@ export default function ProjectItem(data) {
           </div>
         ))}
       </div>
-      <a href={gitHubURL} target="_blank" rel="noopener noreferrer">
-        🔗깃허브 바로가기
-      </a>
+      <div>
+        <a
+          href={gitHubURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline"
+        >
+          🔗깃허브 바로가기
+        </a>
+      </div>
+      {projectURL && (
+        <div>
+          <a
+            href={projectURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline"
+          >
+            🔗{projectURL}
+          </a>
+        </div>
+      )}
+      <div>
+        <a
+          href={projectDetailInfo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline"
+        >
+          🔗프로젝트 상세 내용보기
+        </a>
+      </div>
     </div>
   );
 }
