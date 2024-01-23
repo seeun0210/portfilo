@@ -1,25 +1,25 @@
 import Layout from "../components/layout";
 import Head from "next/head";
+import ProjectItem from "@/components/projects/project-item";
 import { TOKEN, DATABASE_ID } from "@/config";
 
 export default function Projects({ projects }) {
   console.log(projects);
   return (
     <Layout>
-      <Head>
-        <title>김세은-포트폴리오</title>
-      </Head>
-      <h1>총 프로젝트: {projects.results.length}</h1>
-      {projects.results.map((aProject) => {
-        const titleProperty = aProject.properties[""]["title"];
-        return (
-          <div key={aProject.id}>
-            <h1>
-              {titleProperty ? titleProperty[0].text.content : "No Title"}
-            </h1>
-          </div>
-        );
-      })}
+      <div className="flex flex-col items-center min-h-screen px-5 px-24 mb-10">
+        <Head>
+          <title>김세은-포트폴리오</title>
+        </Head>
+        <h1 className="text-3xl font-bold sm:text-2xl">
+          전체 프로젝트: {projects.results.length}
+        </h1>
+        <div className="grid grid-col-1 md:grid-cols-2">
+          {projects.results.map((aProject) => {
+            return <ProjectItem key={aProject.id} data={aProject} />;
+          })}
+        </div>
+      </div>
     </Layout>
   );
 }
