@@ -31,6 +31,30 @@ export default function ContactItem() {
 
   const handleSubmit = async () => {
     try {
+      // Validate name
+      if (!name.trim()) {
+        alert("이름을 입력해주세요.");
+        return;
+      }
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.trim() || !emailRegex.test(email)) {
+        alert("유효한 이메일 주소를 입력해주세요.");
+        return;
+      }
+
+      // Validate subject
+      if (!subject.trim()) {
+        alert("제목을 입력해주세요.");
+        return;
+      }
+
+      // Validate message
+      if (!message.trim()) {
+        alert("내용을 입력해주세요.");
+        return;
+      }
       console.log("Form submitted:", { name, email, subject, message });
 
       const emailForm = { name, email, message };
