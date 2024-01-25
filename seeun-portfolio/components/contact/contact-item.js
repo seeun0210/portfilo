@@ -31,6 +31,30 @@ export default function ContactItem() {
 
   const handleSubmit = async () => {
     try {
+      // Validate name
+      if (!name.trim()) {
+        alert("이름을 입력해주세요.");
+        return;
+      }
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.trim() || !emailRegex.test(email)) {
+        alert("유효한 이메일 주소를 입력해주세요.");
+        return;
+      }
+
+      // Validate subject
+      if (!subject.trim()) {
+        alert("제목을 입력해주세요.");
+        return;
+      }
+
+      // Validate message
+      if (!message.trim()) {
+        alert("내용을 입력해주세요.");
+        return;
+      }
       console.log("Form submitted:", { name, email, subject, message });
 
       const emailForm = { name, email, message };
@@ -51,25 +75,21 @@ export default function ContactItem() {
             height="100%"
             className="absolute inset-0"
             title="map"
-            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=서울 중랑구&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
             style={{ filter: "grayscale(1) contrast(1.2) opacity(0.4)" }}
           ></iframe>
-          <div className="bg-white relative flex flex-wrap py-6 rounded shadow-md">
-            <div className="lg:w-1/2 px-6">
+          <div className="bg-white relative flex flex-wrap py-6 px-12 rounded shadow-md">
+            <div className="lg:w-1/2  flex-grow">
               <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">
                 ADDRESS
               </h2>
               <p className="mt-1">서울 중랑구</p>
             </div>
-            <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
+            <div className="lg:w-1/2  mt-4 lg:mt-0 flex-grow">
               <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">
                 EMAIL
               </h2>
               <p>cocobell3@dgu.ac.kr</p>
-              <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">
-                PHONE
-              </h2>
-              <p className="leading-relaxed">123-456-7890</p>
             </div>
           </div>
         </div>
@@ -79,7 +99,7 @@ export default function ContactItem() {
             Contact
           </h2>
           <p className="leading-relaxed mb-5 text-gray-600">
-            Post-ironic portland shabby chic echo park, banjo fashion axe
+            언제든 연락주세요!
           </p>
           <div className="relative mb-4">
             <label htmlFor="name" className="leading-7 text-sm text-gray-600">
@@ -102,6 +122,7 @@ export default function ContactItem() {
               type="email"
               id="email"
               name="email"
+              placeholder="your-email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
