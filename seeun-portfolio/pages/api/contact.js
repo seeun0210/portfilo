@@ -27,12 +27,12 @@ export default async function handler(req, res) {
   }
 }
 
-export async function sendEmail({ name, email, message }) {
+export async function sendEmail({ name, email, subject, message }) {
   const mailData = {
     to: AUTH_USER,
-    subject: `[portfolio]sender:${name}`,
+    subject: `[portfolio]${name}: ${subject}`,
     from: email,
-    html: `<p>${message}</p>`,
+    html: `<h1>${subject}<h1> <p>${message}</p>`,
   };
 
   try {

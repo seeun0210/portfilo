@@ -3,12 +3,44 @@ import { useState } from "react";
 export default function ContactItem() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const sendContactEmail = async (emailForm) => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(emailForm),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-  const handleSubmit = () => {
-    // 폼 전송 로직을 추가할 수 있습니다.
-    console.log("Form submitted:", { name, email, message });
-    sendContactEmail(emailForm);
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log(data.message);
+        throw new Error(data.message || "서버 요청에 실패함");
+      }
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`이메일 전송 실패: ${error.message}`);
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      console.log("Form submitted:", { name, email, subject, message });
+
+      const emailForm = { name, email, message };
+      const data = await sendContactEmail(emailForm);
+      alert("메일보내기 성공!");
+      console.log("Email sent successfully", data);
+    } catch (error) {
+      alert("메일 보내기 실패");
+      console.error("Failed to send email", error);
+    }
   };
   return (
     <section className="text-gray-600 body-font relative">
@@ -41,6 +73,7 @@ export default function ContactItem() {
             </div>
           </div>
         </div>
+
         <div className="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">
             Contact
@@ -71,6 +104,22 @@ export default function ContactItem() {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            />
+          </div>
+          <div className="relative mb-4">
+            <label
+              htmlFor="subject"
+              className="leading-7 text-sm text-gray-600"
+            >
+              Subject
+            </label>
+            <input
+              type="subject"
+              id="subject"
+              name="subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
