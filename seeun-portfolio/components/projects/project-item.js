@@ -26,10 +26,10 @@ export default function ProjectItem(data) {
         />
       </div>
       <h1 className="font-bold text-xl mh-3">{Title}</h1>
-      <div>
+      <div className="py-3">
         <h2>{myRole}</h2>
       </div>
-      <div className="flex flex-wrap mt-2">
+      <div className="flex flex-wrap mb-3">
         {skillSet.map((aSkill) => (
           <div
             key={aSkill.id}

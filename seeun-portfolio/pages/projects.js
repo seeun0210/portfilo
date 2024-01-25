@@ -4,7 +4,6 @@ import ProjectItem from "@/components/projects/project-item";
 import { TOKEN, DATABASE_ID } from "@/config";
 
 export default function Projects({ projects }) {
-  console.log(projects);
   return (
     <Layout>
       <div className="flex flex-col items-center min-h-screen px-5 px-24 mb-10">
@@ -58,10 +57,7 @@ export async function getStaticProps() {
     return titleProperty ? titleProperty[0].text.content : "No Title";
   });
 
-  console.log(`projectIds :: ${projectsIds}`);
-  console.log(`projectTitle :: ${projectsTitles}`);
-
   return {
-    props: { projects }, // projectsTitle로 수정
+    props: { projects },
   };
 }
