@@ -9,7 +9,7 @@ export default function Projects({ projects }) {
     <Layout>
       <div className="flex flex-col items-center min-h-screen px-5 px-24 mb-10">
         <Head>
-          <title>김세은-포트폴리오</title>
+          <title>포트폴리오 프로젝트</title>
         </Head>
         <h1 className="text-3xl font-bold sm:text-2xl">
           전체 프로젝트: {projects.results.length}
@@ -36,6 +36,12 @@ export async function getStaticProps() {
     },
     body: JSON.stringify({
       page_size: 100,
+      sorts: [
+        {
+          property: "title",
+          direction: "ascending",
+        },
+      ],
     }),
   };
 
