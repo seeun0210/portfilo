@@ -8,7 +8,7 @@ export default function ProjectItem(data) {
     projectItem.properties["사용한 기술 스택 및 라이브러리"].multi_select;
   const skills = skillSet.map((aSkill) => aSkill.name);
   const gitHubURL = projectItem.properties["Github"].url;
-  const imageURL = projectItem.cover.file?.url;
+  const imageURL = projectItem.cover.external.url;
   const projectURL = projectItem.properties["배포링크"]?.url;
   const projectDetailInfo = projectItem.public_url;
   const myRole =
