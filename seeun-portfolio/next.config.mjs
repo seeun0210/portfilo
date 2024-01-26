@@ -28,6 +28,7 @@ const nextConfig = {
       "images.unsplash.com",
       "prod-files-secure.s3.us-west-2.amazonaws.com",
       "noticon-static.tammolo.com",
+      "i.ibb.co",
     ],
   },
 };
