@@ -15,7 +15,8 @@ export default function Hero() {
           🏠 서울 중랑구
         </h2>
         <h2 className="leading-relaxed text-2xl text-gray-500 dark:text-slate-400">
-          ⚒️ SKILL SET: NodeJS, Spring, MySQL, MongoDB, Docker, AWS{" "}
+          ⚒️ SKILL SET: NodeJS, NestJS, Spring, MySQL, PostgreSQL, MongoDB,
+          Docker, AWS{" "}
         </h2>
         <Link href="https://github.com/seeun0210">
           <h2 className="mb-8 leading-relaxed text-2xl text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-300">
